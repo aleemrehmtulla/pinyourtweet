@@ -4,6 +4,7 @@
 
 A decentralized storage system to keep all your tweets <b>forever</b>. Leveraging IPFS, it will screenshot the given tweet, and then spit out a CID hash
 
+![tweet](https://user-images.githubusercontent.com/60443878/151194589-2caac7f6-082b-4d19-bda9-7a232a8d2bc6.gif)
 
 ## Usage 🤝
 
