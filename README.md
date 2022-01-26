@@ -1,34 +1,49 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Pin Your Tweet 🐦
 
-## Getting Started
+## What is this?
 
-First, run the development server:
+A decentralized storage system to keep all your tweets <b>forever</b>. Leveraging IPFS, it will screenshot the given tweet, and then spit out a CID hash
 
-```bash
+
+## Usage 🤝
+
+1. Enter your tweet as a link
+2. Wait ~5 seconds
+3. View the screenshot on IPFS!
+
+## Deployments 💻
+
+Vercel: https://pinyourtweet.vercel.app/
+
+## For development 🧑‍💻
+
+### Scripts
+
+npm install
+
 npm run dev
-# or
-yarn dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+### Important notes
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+You'll se i've used the NextJS api folder, this is to take the tweet link into the values needed. After that, all image processing and uploading is in ```index.js```, with s acouple renders in their respective files.
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+- Run npm install && npm run dev, then go to http://localhost:3000/
+- Edit frontend in index.js
+- Styling itegrated with tailwind
+## Intention, Limitations, and Learnings
 
-## Learn More
+It's optimized, but not <b>made</b> for mobile use.
 
-To learn more about Next.js, take a look at the following resources:
+This was a super fun project to get started with IPFS, and so the design wasn't my main focus. I learned tons about how to upload IPFS files, and the innerworkings of Base64 & Buffers. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+The biggest limitation I've seen is error logging, and random bug outs. I've put in a couple error messages on frontend using sweetalert, but it is still possible to break it ;)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
 
-## Deploy on Vercel
+## Connect with me 🤗
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+https://twitter.com/aleemrehmtulla
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+https://aleemrehmtulla.com
+
+https://www.linkedin.com/in/aleemrehmtulla/
