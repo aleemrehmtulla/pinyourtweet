@@ -35,7 +35,7 @@ function Uploaded(props) {
               className="hover:cursor-pointer text-blue-200 underline"
             >
               
-              Pinata.
+              ipfs.io
             </a>
           </p>
           <p className="text-slate-300">
