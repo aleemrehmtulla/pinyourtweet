@@ -45,7 +45,7 @@ export default function Home() {
     };
 
     // change to localhost in dev
-    const Base64 = await getBase64FromUrl(`https://pinyourtweet-q9hs1o4g6-aleemrehmtulla.vercel.app/_next/image?url=https%3A%2F%2Ftweets-as-an-image.herokuapp.com%2Ftweet%3FtwitterHandle%3D${result.user}%26id%3D${result.id}%26theme%3Dlight&w=1080&q=75`);
+    const Base64 = await getBase64FromUrl(`https://pinyourtweet.vercel.app/_next/image?url=https%3A%2F%2Ftweets-as-an-image.herokuapp.com%2Ftweet%3FtwitterHandle%3D${result.user}%26id%3D${result.id}%26theme%3Dlight&w=1080&q=75`);
     
     async function UploadToIpfs() {
       const Blob = await DataURIToBlob(Base64);
