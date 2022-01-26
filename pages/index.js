@@ -11,9 +11,14 @@ export default function Home() {
   // init for base64
   const atob = (str) => Buffer.from(str, "base64").toString("binary");
   const [cid, setCid] = useState("QmQBNavv5J4fEMnDbkk6Ytej9mpgGNLDumVA1hQSVgNkFj");
+  const [status , setStatus] = useState("ready");
+  const [doing, setDoing] = useState("....");
+
 
   const send = async event => {
     event.preventDefault()
+    setStatus("loading")
+    setDoing("grabbing username and id...")
     const res = await fetch('/api/hello', {
       body: JSON.stringify({
         name: event.target.name.value
@@ -34,6 +39,7 @@ export default function Home() {
     console.log("ID is: " + result.id)
 
     const getBase64FromUrl = async (url) => {
+      setDoing("putting image in Base64...")
       const data = await fetch(url);
       const blob = await data.blob();
       return new Promise((resolve) => {
@@ -52,9 +58,12 @@ export default function Home() {
     async function UploadToIpfs() {
       const Blob = await DataURIToBlob(Base64);
       const ipfs = await IPFS.create( {repo: 'ok' + Math.random()});
+      setDoing("uploading to ipfs...")
       const { cid } = await ipfs.add(Blob);
       console.log(cid.toString());
       setCid(cid.toString());
+      setDoing("done!")
+      setStatus("uploaded");
       return cid;
     }
     UploadToIpfs();
@@ -63,6 +72,7 @@ export default function Home() {
 
   // takes base64 string and returns a blob
   function DataURIToBlob(dataURI) {
+    setDoing("taking Base64 to Blob...")
     console.log("Taking Base64 Image and converting to Blob...");
     const splitDataURI = dataURI.split(",");
     const byteString =
@@ -73,10 +83,31 @@ export default function Home() {
     for (let i = 0; i < byteString.length; i++)
       ia[i] = byteString.charCodeAt(i);
     console.log("Base64 Image converted to Blob");
+    setDoing("generating Ed25519 keypair...    ")
     return Buffer.from(ia);
   }
 
   const Search = `https://gateway.pinata.cloud/ipfs/${cid}`;
+
+
+  if (status==="loading") {
+    return (
+      <div className="w-screen h-screen opacity-75 delay-150 duration-200	top-0 bg-slate-600">
+      <div className="flex pt-48 justify-center">
+        <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24"></div>
+      </div>
+      <h1 className="flex pt-8 text-white justify-center">
+        Allow us a couple seconds to upload your tweet as an image on IPFS :)
+      </h1>
+
+      <p className="flex pt-8 text-white justify-center">
+        Currently: {doing}
+      </p>
+    </div>
+    )
+  }
+
+
 
   return (
     <div className="bg-slate-100 h-screen ">
@@ -167,7 +198,9 @@ export default function Home() {
 
    <Gallery />
    </div>
-
+  
   </div>
+
+  
   );
 }
