@@ -17,7 +17,6 @@ export default function Home() {
   const [cid, setCid] = useState("QmQBNavv5J4fEMnDbkk6Ytej9mpgGNLDumVA1hQSVgNkFj");
   const [status , setStatus] = useState("ready");
   const [doing, setDoing] = useState("....");
-  const [error, setError] = useState("false");
 
 
   const send = async event => {
@@ -46,7 +45,6 @@ export default function Home() {
         text: "We couldn't find the username in the tweet url, please ensure it's a tweet link!",
        
       })
-      setError("true")
     }
     if (result.id == undefined) {
       Swal.fire({
@@ -55,7 +53,6 @@ export default function Home() {
         text: "We couldn't find the ID in the tweet url, please ensure it's a tweet link!",
        
       })
-      setError("true")
     }
 
 
@@ -147,17 +144,8 @@ export default function Home() {
       )
       })
       }
-      if (error == "true") {  
-        const IdentifierKeys = SkeletonKeys
-        theReturn = IdentifierKeys.map(index => {
-        return (
-          <span key={index}>
-            <Ready />
-          </span>
-        )
-        })
-        }
-    if (status=="uploaded" && error == "false")  {  
+     
+    if (status=="uploaded")  {  
       const IdentifierKeys = SkeletonKeys
       theReturn = IdentifierKeys.map(index => {
        return (
