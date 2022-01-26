@@ -1,11 +1,12 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { loadGetInitialProps } from "next/dist/shared/lib/utils";
 
 
-function Tweet(){
+function Tweet(props){
    
     const cid = "QmQBNavv5J4fEMnDbkk6Ytej9mpgGNLDumVA1hQSVgNkFj"
-    const Search = `https://gateway.pinata.cloud/ipfs/${cid}`
+    const Search = `https://gateway.pinata.cloud/ipfs/${props.cid}`
     return (
         <div className="w-full">
         <a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer">
@@ -19,19 +20,14 @@ function Tweet(){
 
 }
 
-function Index(){
+function Index(props){
 
     
     const testKeys = [
-        "79568777",
-        "363714261",
-        "595967632",
-        "662929773",
-        "925201439",
-        "925203539",
-        "927204439",
-        "925505439",
-        "925706439",
+        "QmeZPQjbrCAqFEKR7pCqTKahYNvZuuHZLDskgVAPSU9DRp",
+        "QmQjcy5bovazF1hHMsEUDqn5VcwxT3JHcLCR1jDRrwJmwA",
+        "QmYPnySXUaRXVjj4t7ukABGYr48oN1GdBwQxb2G8hihM94",
+   
       ]
       let cards = []
       if (1==1) {
@@ -42,7 +38,7 @@ function Index(){
           
         <span key={index}>
          
-            <Tweet />
+            <Tweet cid={index}/>
          
         </span>
         )

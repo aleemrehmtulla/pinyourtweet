@@ -51,7 +51,7 @@ export default function Home() {
     
     async function UploadToIpfs() {
       const Blob = await DataURIToBlob(Base64);
-      const ipfs = await IPFS.create();
+      const ipfs = await IPFS.create( {repo: 'ok' + Math.random()});
       const { cid } = await ipfs.add(Blob);
       console.log(cid.toString());
       setCid(cid.toString());
