@@ -52,7 +52,7 @@ function Index(props){
 function Gallery(){
     return (
 
-        <div className="grid grid-cols-3 space-x-5 gap-4 ">
+        <div className="grid grid-cols-1 place-items-center lg:grid-cols-3 space-x-5 gap-4 ">
         <Index />
         </div>
     )
@@ -61,35 +61,3 @@ function Gallery(){
 export default Gallery
 
 
-  // <div className="flex justify-center ">
-   
-  //       <div className="w-full  rounded-full   ">
-  //       <a href={`https://gateway.pinata.cloud/ipfs/${cid}`} className="cursor-default " target="_blank" rel="noreferrer">
-  //           <img src={Search} alt="" width={500} height={500} />
-  //           </a>
-  //           </div>
-
-  //           <div className="bg-slate-500 w-3/6 p-4 rounded-md">
-
-  //             <h1 className="text-white text-xl font-bold">
-  //               Congrats! Your image is now available on IPFS!
-  //             </h1>
-
-  //             <p className="text-white text-lg">
-  //               This screenshot will now live as long as one node has it pinned, it is available and decentralized using IPFS.
-  //             </p>
-
-
-  //             <p className="text-white text-lg font-bold pt-8 flex">
-  //               Click on the image to view it on  &nbsp;<a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer" className="hover:cursor-pointer text-blue-200 underline"> Pinata.</a>
-  //             </p>
-  //             <p className="text-white">
-  //               Your CID (ipfs hash) is: <p className="text-blue-200">{cid}</p>
-  //             </p>
-
-
-  //           </div>
-
-
-
-  //           </div>

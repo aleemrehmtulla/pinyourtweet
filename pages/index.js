@@ -137,11 +137,11 @@ return theReturn
 
 
   return (
-    <div className="bg-slate-100 h-screen ">
+    <div className="bg-slate-100 h-full w-full pb-96 ">
     <div className="flex justify-center">
-      <div className="w-5/6 flex  place-content-center  pt-8">
+      <div className=" flex  place-content-center pl-8 pr-8 lg:pr-36 lg:pl-36 w-full  pt-8">
 
-      <form onSubmit={send} className="flex w-3/6 ">
+      <form onSubmit={send} className="flex w-full ">
         <input
           type="text"
           id="name" 
@@ -180,14 +180,14 @@ return theReturn
       
     </div>
 
-    <div className="pl-32 pr-32 pt-8">
+    <div className="pl-8 pr-8 lg:pr-36 lg:pl-36 pt-8">
 
     <Hi />
    
         
         </div>
 
-    <div className="pr-20 pl-20 pt-16">
+    <div className="pr-8 pl-8 lg:pr-36 lg:pl-36 pt-16">
 
    <Gallery />
    </div>
