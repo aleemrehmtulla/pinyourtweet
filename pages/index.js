@@ -6,6 +6,9 @@ import * as IPFS from "ipfs-core";
 import { useState } from "react";
 import Link from "next/link";
 import Gallery from "./gallery";
+import Uploaded from "./uploaded";
+import Loading from "./loading";
+import Ready from "./ready";
 
 export default function Home() {
   // init for base64
@@ -63,6 +66,7 @@ export default function Home() {
       console.log(cid.toString());
       setCid(cid.toString());
       setDoing("done!")
+      console.log("done!")
       setStatus("uploaded");
       return cid;
     }
@@ -92,20 +96,43 @@ export default function Home() {
 
   if (status==="loading") {
     return (
-      <div className="w-screen h-screen opacity-75 delay-150 duration-200	top-0 bg-slate-600">
-      <div className="flex pt-48 justify-center">
-        <div className="loader ease-linear rounded-full border-8 border-t-8 border-gray-200 h-24 w-24"></div>
+      <div >
+        <Loading doing={doing} />
       </div>
-      <h1 className="flex pt-8 text-white justify-center">
-        Allow us a couple seconds to upload your tweet as an image on IPFS :)
-      </h1>
-
-      <p className="flex pt-8 text-white justify-center">
-        Currently: {doing}
-      </p>
-    </div>
     )
   }
+
+
+    function Hi(){
+      const SkeletonKeys = [
+        "79568777",
+      ]
+      let theReturn=[]
+      
+    if (status!=="uploaded") {  
+      const IdentifierKeys = SkeletonKeys
+      theReturn = IdentifierKeys.map(index => {
+      return (
+        <span key={index}>
+          <Ready />
+        </span>
+      )
+      })
+      }
+    if (status=="uploaded") {  
+      const IdentifierKeys = SkeletonKeys
+      theReturn = IdentifierKeys.map(index => {
+       return (
+          <span key={index}>
+            <Uploaded cid={cid} search={Search} />
+          </span>
+        )
+        })
+      }
+
+return theReturn
+
+       }
 
 
 
@@ -145,10 +172,6 @@ export default function Home() {
         </button>
 
 
-       
-
-
-
         </form>
 
       
@@ -159,38 +182,8 @@ export default function Home() {
 
     <div className="pl-32 pr-32 pt-8">
 
-      <div className="flex justify-center space-x-8">
+    <Hi />
    
-        <div className="w-2/6  rounded-full hover:cursor-pointer">
-        <a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer">
-            <img src={Search} alt="" width={500} height={500} />
-            </a>
-            </div>
-
-            <div className="bg-slate-500 w-3/6 p-4 rounded-md">
-
-              <h1 className="text-white text-xl font-bold">
-                Congrats! Your image is now available on IPFS!
-              </h1>
-
-              <p className="text-white text-lg">
-                This screenshot will now live as long as one node has it pinned, it is available and decentralized using IPFS.
-              </p>
-
-
-              <p className="text-white text-lg font-bold pt-8 flex">
-                Click on the image to view it on  &nbsp;<a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer" className="hover:cursor-pointer text-blue-200 underline"> Pinata.</a>
-              </p>
-              <p className="text-white">
-                Your CID (ipfs hash) is: <p className="text-blue-200">{cid}</p>
-              </p>
-
-
-            </div>
-
-
-
-            </div>
         
         </div>
 
@@ -203,4 +196,7 @@ export default function Home() {
 
   
   );
-}
+
+
+
+  }
