@@ -9,6 +9,7 @@ import Gallery from "./gallery";
 import Uploaded from "./uploaded";
 import Loading from "./loading";
 import Ready from "./ready";
+import Swal from "sweetalert2";
 
 export default function Home() {
   // init for base64
@@ -16,10 +17,15 @@ export default function Home() {
   const [cid, setCid] = useState("QmQBNavv5J4fEMnDbkk6Ytej9mpgGNLDumVA1hQSVgNkFj");
   const [status , setStatus] = useState("ready");
   const [doing, setDoing] = useState("....");
+  const [error, setError] = useState("false");
 
 
   const send = async event => {
     event.preventDefault()
+
+   
+
+
     setStatus("loading")
     setDoing("grabbing username and id...")
     const res = await fetch('/api/hello', {
@@ -32,9 +38,31 @@ export default function Home() {
       method: 'POST'
     })
     const result = await res.json()
+
+    if (result.user == undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'Username not found',
+        text: "We couldn't find the username in the tweet url, please ensure it's a tweet link!",
+       
+      })
+      setError("true")
+    }
+    if (result.id == undefined) {
+      Swal.fire({
+        icon: 'error',
+        title: 'ID not found',
+        text: "We couldn't find the ID in the tweet url, please ensure it's a tweet link!",
+       
+      })
+      setError("true")
+    }
+
+
     ImageToBase(result)
   }
 
+  
 
   async function ImageToBase(result) {
 
@@ -109,7 +137,7 @@ export default function Home() {
       ]
       let theReturn=[]
       
-    if (status!=="uploaded") {  
+    if (status!=="uploaded" ) {  
       const IdentifierKeys = SkeletonKeys
       theReturn = IdentifierKeys.map(index => {
       return (
@@ -119,7 +147,17 @@ export default function Home() {
       )
       })
       }
-    if (status=="uploaded") {  
+      if (error == "true") {  
+        const IdentifierKeys = SkeletonKeys
+        theReturn = IdentifierKeys.map(index => {
+        return (
+          <span key={index}>
+            <Ready />
+          </span>
+        )
+        })
+        }
+    if (status=="uploaded" && error == "false")  {  
       const IdentifierKeys = SkeletonKeys
       theReturn = IdentifierKeys.map(index => {
        return (
@@ -133,8 +171,7 @@ export default function Home() {
 return theReturn
 
        }
-
-
+      
 
   return (
     <div className="bg-slate-100 h-full w-full pb-96 ">
@@ -196,6 +233,7 @@ return theReturn
 
   
   );
+   
 
 
 

@@ -13,6 +13,10 @@ function Ready(props) {
               Put in a tweet link above, and we&apos;ll create a screenshot, then upload it to IPFS. This will make a 
               decentralized copy of the tweet available to anyone who has the IPFS hash, and as long as one person has it pinned, it will be available <b>forever</b>.
             </p>
+
+            <p className="text-white justify-center text-lg font-bold pt-8 flex ">
+                Ensure you put in a valid tweet link.
+            </p>
          
           </div>
         </div>
