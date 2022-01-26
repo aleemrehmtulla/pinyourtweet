@@ -10,7 +10,27 @@ export default function Home() {
   const atob = (str) => Buffer.from(str, "base64").toString("binary");
   const [cid, setCid] = useState("QmaaQcrim3WihA5BGYGeJS3QSVbM4yp1AuGzMy3H5aPecS");
 
-  async function ImageToBase() {
+  const send = async event => {
+    event.preventDefault()
+    const res = await fetch('/api/hello', {
+      body: JSON.stringify({
+        name: event.target.name.value
+      }),
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      method: 'POST'
+    })
+    const result = await res.json()
+    ImageToBase(result)
+  }
+
+
+  async function ImageToBase(result) {
+
+    console.log("Username is: " + result.user)
+    console.log("ID is: " + result.id)
+
     const getBase64FromUrl = async (url) => {
       const data = await fetch(url);
       const blob = await data.blob();
@@ -23,10 +43,8 @@ export default function Home() {
         };
       });
     };
-    const Base64 = await getBase64FromUrl(
-      "https://www.aleemrehmtulla.com/img/aleem/logos.jpeg"
-      
-    );
+    const Base64 = await getBase64FromUrl(`http://localhost:3000/_next/image?url=https%3A%2F%2Ftweets-as-an-image.herokuapp.com%2Ftweet%3FtwitterHandle%3D${result.user}%26id%3D${result.id}%26theme%3Dlight&w=1080&q=75`);
+    
     async function UploadToIpfs() {
       const Blob = await DataURIToBlob(Base64);
       const ipfs = await IPFS.create();
@@ -37,9 +55,7 @@ export default function Home() {
     }
     UploadToIpfs();
   }
-  useEffect(() => {
-    ImageToBase();
-  }, []);
+
 
   // takes base64 string and returns a blob
   function DataURIToBlob(dataURI) {
@@ -56,14 +72,18 @@ export default function Home() {
     return Buffer.from(ia);
   }
 
-  const Search =  `https://gateway.pinata.cloud/ipfs/${cid}`;
+  const Search = `https://gateway.pinata.cloud/ipfs/${cid}`;
 
   return (
     <div className="bg-slate-100 h-screen ">
     <div className="flex justify-center">
-      <div className="w-3/6 flex  place-content-center  pt-8">
+      <div className="w-5/6 flex  place-content-center  pt-8">
+
+      <form onSubmit={send} className="flex w-3/6 ">
         <input
-          type="search"
+          type="text"
+          id="name" 
+          name="name"
           className="w-full px-4 py-1 text-gray-800 rounded-l-lg focus:outline-none"
           placeholder="https://twitter.com/aleemrehmtulla/status/1484616584564031494"
           x-model="search"
@@ -88,21 +108,15 @@ export default function Home() {
             ></path>
           </svg>
         </button>
-      </div>
-    </div>
 
-    <div className="w-full pt-20 ">
-      <Image
-        alt=""
-        src={Search}
-        width="500%"
-        height="500%"
-        objectFit="contain"
-        className="w-full h-full"
-      />
-    </div>
-    <div className="grid  pt-48 grid-cols-3 space-x-2">
-     
+
+        <Image src={Search} alt="" width={500} height={500} />
+
+
+        </form>
+
+
+      </div>
     </div>
   </div>
   );
