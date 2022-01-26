@@ -116,7 +116,7 @@ export default function Home() {
     return Buffer.from(ia);
   }
 
-  const Search = `https://gateway.pinata.cloud/ipfs/${cid}`;
+  const Search = `https://ipfs.io/ipfs/${cid}`;
 
 
   if (status==="loading") {

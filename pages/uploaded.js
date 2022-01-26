@@ -40,7 +40,7 @@ function Uploaded(props) {
           </p>
           <p className="text-slate-300">
             Your CID (ipfs hash) is: 
-            <p className="text-blue-200 text-sm  break-all w-fit">QmfEzAyoS5cbJLSxKVgCSQd9xMwq6EYNAM31qNUegui83v</p>
+            <p className="text-blue-200 text-sm  break-all w-fit">{props.cid}</p>
           </p>
         </div>
 
