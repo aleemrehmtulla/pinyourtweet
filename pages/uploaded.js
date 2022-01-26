@@ -6,7 +6,7 @@ function Uploaded(props) {
         <div className=" h-full pr-8 pb-4 md:pb-4 ">
         <div className="w-full rounded-full hover:cursor-pointer">
           <a
-            href={`https://gateway.pinata.cloud/ipfs/${props.cid}`}
+            href={`https://ipfs.io/ipfs/${props.cid}`}
             target="_blank"
             rel="noreferrer"
             className="w-full"
@@ -29,7 +29,7 @@ function Uploaded(props) {
           <p className="text-slate-300 text-lg font-bold pt-8 flex ">
             Click to view it on  &#160;
             <a
-              href={`https://gateway.pinata.cloud/ipfs/${props.cid}`}
+              href={`https://ipfs.io/ipfs/${props.cid}`}
               target="_blank"
               rel="noreferrer"
               className="hover:cursor-pointer text-blue-200 underline"
