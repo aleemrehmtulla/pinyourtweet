@@ -4,11 +4,13 @@ import styles from "../styles/Home.module.css";
 import { useEffect } from "react";
 import * as IPFS from "ipfs-core";
 import { useState } from "react";
+import Link from "next/link";
+import Gallery from "./gallery";
 
 export default function Home() {
   // init for base64
   const atob = (str) => Buffer.from(str, "base64").toString("binary");
-  const [cid, setCid] = useState("QmaaQcrim3WihA5BGYGeJS3QSVbM4yp1AuGzMy3H5aPecS");
+  const [cid, setCid] = useState("QmQBNavv5J4fEMnDbkk6Ytej9mpgGNLDumVA1hQSVgNkFj");
 
   const send = async event => {
     event.preventDefault()
@@ -112,14 +114,60 @@ export default function Home() {
         </button>
 
 
-        <Image src={Search} alt="" width={500} height={500} />
+       
+
 
 
         </form>
 
+      
 
       </div>
+      
     </div>
+
+    <div className="pl-32 pr-32 pt-8">
+
+      <div className="flex justify-center space-x-8">
+   
+        <div className="w-2/6  rounded-full hover:cursor-pointer">
+        <a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer">
+            <img src={Search} alt="" width={500} height={500} />
+            </a>
+            </div>
+
+            <div className="bg-slate-500 w-3/6 p-4 rounded-md">
+
+              <h1 className="text-white text-xl font-bold">
+                Congrats! Your image is now available on IPFS!
+              </h1>
+
+              <p className="text-white text-lg">
+                This screenshot will now live as long as one node has it pinned, it is available and decentralized using IPFS.
+              </p>
+
+
+              <p className="text-white text-lg font-bold pt-8 flex">
+                Click on the image to view it on  &nbsp;<a href={`https://gateway.pinata.cloud/ipfs/${cid}`} target="_blank" rel="noreferrer" className="hover:cursor-pointer text-blue-200 underline"> Pinata.</a>
+              </p>
+              <p className="text-white">
+                Your CID (ipfs hash) is: <p className="text-blue-200">{cid}</p>
+              </p>
+
+
+            </div>
+
+
+
+            </div>
+        
+        </div>
+
+    <div className="pr-20 pl-20 pt-16">
+
+   <Gallery />
+   </div>
+
   </div>
   );
 }
