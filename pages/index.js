@@ -162,7 +162,9 @@ return theReturn
       
 
   return (
+
     <div className="bg-slate-100 h-full w-full pb-96 ">
+      <div className="pb-32" />
     <div className="flex justify-center">
       <div className=" flex  place-content-center pl-8 pr-8 lg:pr-36 lg:pl-36 w-full  pt-8">
 
@@ -212,10 +214,7 @@ return theReturn
         
         </div>
 
-    <div className="pr-8 pl-8 lg:pr-36 lg:pl-36 pt-16">
-
-   <Gallery />
-   </div>
+    
   
   </div>
 
