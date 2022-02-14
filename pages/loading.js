@@ -11,6 +11,9 @@ function Loading(props){
         <p className="flex pt-8 text-white justify-center">
           Currently: {props.doing}
         </p>
+
+        <p className="flex pt-8 text-white justify-center">*this will take a bit- moved api to free level 🙈 (02/13/2022)</p>
+     
       </div>
     )
 }
